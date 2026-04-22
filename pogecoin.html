@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Pogecoin ($POGE) — Staking Reward Token</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Pogecoin ($POGE) is the staking reward token of Dunk Poge. 1 billion fixed supply. Earned by staking on-chain NFTs — never sold. Immutable contract, no admin, no mint function."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://dunkpoge.com/pogecoin.html"/>
+
+  <!-- OG -->
+  <meta property="og:type"        content="website"/>
+  <meta property="og:site_name"   content="Dunk Poge"/>
+  <meta property="og:url"         content="https://dunkpoge.com/pogecoin.html"/>
+  <meta property="og:title"       content="Pogecoin ($POGE) — Staking Reward Token"/>
+  <meta property="og:description" content="1 billion fixed supply. Earned by staking Dunk Poge NFTs. Never sold. No admin. No mint function."/>
+  <meta property="og:image"       content="https://dunkpoge.com/logo512.png"/>
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image"/>
+  <meta name="twitter:site"        content="@dunkpoge"/>
+  <meta name="twitter:title"       content="Pogecoin ($POGE) — Staking Reward Token"/>
+  <meta name="twitter:description" content="1 billion fixed supply. Earned by staking Dunk Poge NFTs. Never sold. No admin. No mint function."/>
+  <meta name="twitter:image"       content="https://dunkpoge.com/logo512.png"/>
+
+  <link rel="icon" href="favicon.ico"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    a { color: #4ade80; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HEADER ── matches site style */
+    header {
+      border-bottom: 4px solid #fff;
+      background: #000;
+      padding: 1rem;
+      position: relative;
+    }
+    .header-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.5rem;
+      padding-bottom: 1rem;
+    }
+    .site-title {
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-shadow: 4px 4px 0 #FF0066;
+    }
+    .on-chain-badge {
+      position: absolute;
+      top: 0.5rem;
+      left: 1.5rem;
+      background: #4ade80;
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: 900;
+      padding: 0.2rem 0.7rem;
+      border: 2px solid #000;
+      transform: rotate(-6deg);
+      text-transform: uppercase;
+    }
+    .header-nav {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .header-nav a { color: #fff; }
+    .header-nav a:hover { color: #4ade80; text-decoration: none; }
+
+    /* stats bar */
+    .stats-bar {
+      background: #4ade80;
+      color: #000;
+      font-weight: 900;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      padding: 0.5rem 2rem;
+      display: inline-flex;
+      gap: 2rem;
+      transform: rotate(-2deg);
+      border: 4px solid #000;
+      box-shadow: 4px 4px 0 #000;
+      margin: 0.5rem auto 1.5rem;
+    }
+    .stats-wrap {
+      text-align: center;
+      overflow: hidden;
+      padding-bottom: 1rem;
+    }
+
+    /* ── NAV BAR ── */
+    nav.subnav {
+      border-top: 4px solid #fff;
+      border-bottom: 4px solid #fff;
+      background: #000;
+    }
+    .subnav-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      display: flex;
+    }
+    .subnav-inner a {
+      flex: 1;
+      padding: 1rem;
+      font-weight: 900;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      text-align: center;
+      border-right: 4px solid #fff;
+      color: #fff;
+      transition: background 0.15s, color 0.15s;
+    }
+    .subnav-inner a:last-child { border-right: none; }
+    .subnav-inner a:hover { background: #fff; color: #000; text-decoration: none; }
+    .subnav-inner a.active { background: #4ade80; color: #000; }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .coin-icon {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 span { color: #FFEE00; }
+    .hero-sub {
+      font-size: 1rem;
+      color: #4ade80;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+    }
+    .not-sold-badge {
+      display: inline-block;
+      background: #FF2200;
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 0.4rem 1.2rem;
+      border: 3px solid #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    /* section */
+    section { margin-bottom: 3rem; }
+    .section-label {
+      font-size: 0.7rem;
+      color: #4ade80;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      border-bottom: 4px solid #fff;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* stat grid */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: #111;
+      border: 2px solid #333;
+      padding: 1.2rem;
+      border-left: 5px solid #FFEE00;
+    }
+    .stat-card .label {
+      font-size: 0.65rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.4rem;
+    }
+    .stat-card .value {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #fff;
+    }
+    .stat-card .value.yellow { color: #FFEE00; }
+    .stat-card .value.green  { color: #4ade80; }
+    .stat-card .value.red    { color: #FF2200; }
+
+    /* contract address */
+    .contract-box {
+      background: #111;
+      border: 4px solid #4ade80;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .contract-box .clabel {
+      font-size: 0.65rem;
+      color: #4ade80;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.5rem;
+    }
+    .contract-box .addr {
+      font-size: 0.85rem;
+      word-break: break-all;
+      color: #fff;
+    }
+    .contract-box a {
+      display: inline-block;
+      margin-top: 0.75rem;
+      background: #4ade80;
+      color: #000;
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 0.4rem 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 2px solid #000;
+    }
+
+    /* how it works */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .step {
+      background: #0a0a0a;
+      border: 2px solid #222;
+      border-top: 5px solid #FFEE00;
+      padding: 1.5rem;
+    }
+    .step-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #FFEE00;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+    .step h3 {
+      font-size: 0.9rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .step p { font-size: 0.8rem; color: #888; line-height: 1.6; }
+
+    /* emission table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+    th {
+      background: #FFEE00;
+      color: #000;
+      font-weight: 900;
+      padding: 0.6rem 1rem;
+      text-align: left;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+    }
+    td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid #1a1a1a;
+      color: #ccc;
+    }
+    tr:nth-child(even) td { background: #0a0a0a; }
+
+    /* guarantees */
+    .guarantees {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .guarantee {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      border-left: 4px solid #4ade80;
+      padding: 1rem 1.2rem;
+    }
+    .guarantee h4 {
+      font-size: 0.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #4ade80;
+      margin-bottom: 0.4rem;
+    }
+    .guarantee p { font-size: 0.78rem; color: #666; line-height: 1.6; }
+
+    /* CTA */
+    .cta-bar {
+      background: #FFEE00;
+      border: 4px solid #000;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .cta-bar h2 {
+      color: #000;
+      border-color: #000;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .cta-bar p { color: #333; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .cta-btn {
+      display: inline-block;
+      background: #000;
+      color: #FFEE00;
+      font-weight: 900;
+      font-size: 1rem;
+      padding: 0.8rem 2.5rem;
+      border: 4px solid #000;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.15s;
+    }
+    .cta-btn:hover { transform: translate(-2px,-2px); text-decoration: none; color: #FFEE00; }
+
+    /* footer */
+    footer {
+      border-top: 4px solid #fff;
+      background: #000;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+    .footer-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.8rem;
+    }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: #fff; font-weight: 700; text-transform: uppercase; }
+    .footer-links a:hover { color: #4ade80; text-decoration: none; }
+    .footer-copy { color: #4ade80; font-weight: 900; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div style="position:relative">
+        <span class="on-chain-badge">FULLY ON-CHAIN</span>
+        <a href="/" style="color:#fff; text-decoration:none">
+          <div class="site-title">DUNK POGE</div>
+        </a>
+      </div>
+      <nav class="header-nav">
+        <a href="/#/mint">Mint</a>
+        <a href="/#/stake">Stake</a>
+        <a href="/#/rewards">Rewards</a>
+        <a href="/#/docs">Docs</a>
+      </nav>
+    </div>
+    <div class="stats-wrap">
+      <div class="stats-bar">
+        <span>10,000 NFTs · Ethereum</span>
+        <span>|</span>
+        <span>Stake → Earn $POGE</span>
+        <span>|</span>
+        <span>Code is Law</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUBNAV -->
+  <nav class="subnav">
+    <div class="subnav-inner">
+      <a href="/">NFT Collection</a>
+      <a href="/pogecoin.html" class="active">$POGE Token</a>
+      <a href="/#/stake">Staking</a>
+      <a href="/#/docs">Docs</a>
+      <a href="/#/faq">FAQ</a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <div class="hero">
+      <svg class="coin-icon" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="48" cy="48" r="48" fill="#111"/>
+        <circle cx="48" cy="48" r="42" fill="none" stroke="#FFEE00" stroke-width="4"/>
+        <circle cx="48" cy="48" r="36" fill="#FFEE00"/>
+        <text x="48" y="60" font-family="Courier New,Courier,monospace" font-size="30" font-weight="700" fill="#000" text-anchor="middle">$P</text>
+      </svg>
+
+      <div class="hero-sub">Pogecoin · ERC-20 · Ethereum</div>
+      <h1>POGE<span>COIN</span></h1>
+      <div class="not-sold-badge">⚠ Never Sold — Only Earned</div>
+      <p style="color:#666; font-size:0.9rem; max-width:540px; margin:0 auto; line-height:1.7">
+        Pogecoin ($POGE) is the staking reward token of the Dunk Poge ecosystem.
+        It cannot be bought, sold pre-market, or minted by any admin.
+        It is earned exclusively by staking Dunk Poge NFTs.
+      </p>
+    </div>
+
+    <!-- CONTRACT ADDRESS -->
+    <section>
+      <div class="section-label">Contract</div>
+      <h2>Token Address</h2>
+      <div class="contract-box">
+        <div class="clabel">Pogecoin (POGE) — ERC-20 · Ethereum Mainnet</div>
+        <div class="addr" id="poge-address">See dunkpoge.com for verified contract address</div>
+        <a href="https://etherscan.io/token/" target="_blank" rel="noopener noreferrer">
+          View on Etherscan ↗
+        </a>
+      </div>
+    </section>
+
+    <!-- KEY STATS -->
+    <section>
+      <div class="section-label">Tokenomics</div>
+      <h2>Key Facts</h2>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="label">Total Supply</div>
+          <div class="value yellow">1,000,000,000</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Allocation</div>
+          <div class="value green">100% Staking Rewards</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Public Sale</div>
+          <div class="value red">None</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Private Sale</div>
+          <div class="value red">None</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Team Allocation</div>
+          <div class="value red">None</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Admin / Mint Function</div>
+          <div class="value red">None</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Standard</div>
+          <div class="value">ERC-20</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Emission Duration</div>
+          <div class="value yellow">264 Years</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW TO EARN -->
+    <section>
+      <div class="section-label">How It Works</div>
+      <h2>How to Earn $POGE</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Mint a Dunk Poge NFT</h3>
+          <p>Mint one or more of the 10,000 on-chain NFTs at 0.005 ETH each. Max 10 per wallet.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Stake Your NFT</h3>
+          <p>Approve and stake your NFT(s) in the immutable staking contract. No lock-up period — unstake anytime.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Earn $POGE</h3>
+          <p>Rewards accumulate every second. Claim anytime, or they are automatically sent when you unstake.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h3>Build Your Multiplier</h3>
+          <p>The longer you stake continuously, the more you earn. Multiplier grows from 1x → 2x over 180 days.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMISSION TABLE -->
+    <section>
+      <div class="section-label">Emission Schedule</div>
+      <h2>Reward Decay</h2>
+      <p style="color:#666; font-size:0.85rem; margin-bottom:1.5rem; line-height:1.7">
+        Rewards decay quadratically over 264 years. Early stakers earn significantly more.
+        The loyalty multiplier partially offsets the decay for long-term holders.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Base Rate (per NFT/day)</th>
+            <th>With 2x Multiplier</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Day 1</td><td>~10 POGE</td><td>~10 POGE</td></tr>
+          <tr><td>Day 180</td><td>~6.25 POGE</td><td>~9.375 POGE</td></tr>
+          <tr><td>Day 365</td><td>~3.75 POGE</td><td>~7.5 POGE</td></tr>
+          <tr><td>Day 730</td><td>~1 POGE</td><td>~2 POGE</td></tr>
+        </tbody>
+      </table>
+      <p style="color:#444; font-size:0.75rem">Loyalty multiplier grows from 1x to 2x over 180 days of continuous staking. Claiming rewards does not reset the multiplier — only unstaking does.</p>
+    </section>
+
+    <!-- GUARANTEES -->
+    <section>
+      <div class="section-label">Security</div>
+      <h2>Trustless Guarantees</h2>
+      <div class="guarantees">
+        <div class="guarantee">
+          <h4>No Admin Functions</h4>
+          <p>The staking contract has zero admin functions. It cannot be paused, upgraded, or modified by anyone.</p>
+        </div>
+        <div class="guarantee">
+          <h4>No Mint Function</h4>
+          <p>POGE supply is fixed at 1 billion. No one can mint additional tokens after deployment.</p>
+        </div>
+        <div class="guarantee">
+          <h4>Always Withdrawable</h4>
+          <p>Your NFTs are always withdrawable via emergencyWithdraw() even if the reward pool is depleted.</p>
+        </div>
+        <div class="guarantee">
+          <h4>No Vesting, No Cliffs</h4>
+          <p>There are no team tokens, no vesting schedules, no cliff unlocks. 100% of supply goes to stakers.</p>
+        </div>
+        <div class="guarantee">
+          <h4>Verifiable On-Chain</h4>
+          <p>Emission rates, decay curves, and multipliers are public contract constants. Anyone can verify.</p>
+        </div>
+        <div class="guarantee">
+          <h4>Censorship Resistant</h4>
+          <p>No admin can prevent claiming rewards or unstaking. The contract runs autonomously forever.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-bar">
+      <h2>Start Earning $POGE</h2>
+      <p>Stake your Dunk Poge NFT and earn rewards from day one.<br/>No lock-up. No minimum. Unstake anytime.</p>
+      <a href="/#/stake" class="cta-btn">Stake Now →</a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/#/mint">Mint</a>
+        <a href="/#/stake">Stake</a>
+        <a href="/#/rewards">Rewards</a>
+        <a href="/#/docs">Docs</a>
+        <a href="/#/faq">FAQ</a>
+        <a href="https://opensea.io/collection/dunk-poge" target="_blank" rel="noopener noreferrer">OpenSea</a>
+        <a href="https://github.com/dunkpoge" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://x.com/dunkpoge" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+        <a href="https://discord.gg/7PsZwC3TZX" target="_blank" rel="noopener noreferrer">Discord</a>
+      </div>
+      <div class="footer-copy">DUNK POGE © 2026 · hello@dunkpoge.com</div>
+    </div>
+  </footer>
+
+</body>
+</html>
